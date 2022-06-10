@@ -7,4 +7,5 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'prettier',
   ],
+  ignorePatterns: ['*.config.js'],
 }
