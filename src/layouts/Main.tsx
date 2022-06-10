@@ -27,12 +27,15 @@ export const Main = (p: MainProps) => {
 
       {/* footer show version and build time */}
       <footer className="w-full bg-grey border-solid border-t flex items-center">
-        <article className="max-w-screen-lg m-auto prose-zinc">
-          Developed by{' '}
-          <a href="https://github.com/letientai299" target="_blank">
-            @letientai299
-          </a>{' '}
-          using React, Tailwind. Build at {process.env.REACT_APP_BUILD_TIME}!
+        <article className="max-w-screen-lg m-auto prose-zinc text-center">
+          <p>
+            Developed by{' '}
+            <a href="https://github.com/letientai299" target="_blank">
+              @letientai299
+            </a>{' '}
+            using ReactJS, TailwindCSS, Tone.js
+          </p>
+          <p>Build at {process.env.REACT_APP_BUILD_TIME}!</p>
         </article>
       </footer>
     </div>
