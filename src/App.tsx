@@ -1,11 +1,12 @@
 import React, { ReactElement } from 'react'
 import { Main } from './layouts/Main'
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
-import { Metronome } from './pages/Metronome'
-import { Sight } from './pages/Sight'
-import { Pitch } from './pages/Pitch'
 import { GiMetronome, GiMusicalNotes, GiMusicalScore } from 'react-icons/gi'
 import { Card } from './components/Card'
+
+const Sight = React.lazy(() => import('./pages/Sight'))
+const Pitch = React.lazy(() => import('./pages/Pitch'))
+const Metronome = React.lazy(() => import('./pages/Metronome'))
 
 type tool = {
   route: string
@@ -44,8 +45,13 @@ function createHome() {
     <Main>
       <div>
         {tools.map((p) => (
-          <Link to={p.route}>
-            <Card name={p.title} icon={p.icon} description={p.description} />
+          <Link key={p.route} to={p.route}>
+            <Card
+              key={p.route}
+              name={p.title}
+              icon={p.icon}
+              description={p.description}
+            />
           </Link>
         ))}
       </div>
@@ -61,8 +67,15 @@ export default function App() {
 
         {tools.map((p) => (
           <Route
+            key={p.route}
             path={p.route}
-            element={<Main title={p.title}>{p.element}</Main>}
+            element={
+              <Main title={p.title}>
+                <React.Suspense fallback={<div>Loading...</div>}>
+                  {p.element}
+                </React.Suspense>
+              </Main>
+            }
           />
         ))}
 

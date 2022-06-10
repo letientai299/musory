@@ -32,7 +32,7 @@ export const Main = (p: MainProps) => {
           <a href="https://github.com/letientai299" target="_blank">
             @letientai299
           </a>{' '}
-          using React, Tailwind
+          using React, Tailwind. Build at {process.env.REACT_APP_BUILD_TIME}!
         </article>
       </footer>
     </div>
