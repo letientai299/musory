@@ -1,4 +1,4 @@
-import { ReactElement, useEffect } from 'react'
+import { ReactElement, useEffect, useMemo } from 'react'
 
 type MainProps = {
   title?: string
@@ -10,6 +10,11 @@ export const Main = (p: MainProps) => {
   useEffect(() => {
     document.title = pageName
   })
+  const buildTime: string = useMemo<string>((): string => {
+    const s = process.env.REACT_APP_BUILD_TIME
+    console.log(s)
+    return new Date(s ? s : '').toLocaleString()
+  }, [])
   return (
     <div>
       <header className="bg-black w-full text-white text-xl flex items-center">
@@ -33,9 +38,8 @@ export const Main = (p: MainProps) => {
             <a href="https://github.com/letientai299" target="_blank">
               @letientai299
             </a>{' '}
-            using ReactJS, TailwindCSS, Tone.js
           </p>
-          <p>Build at {process.env.REACT_APP_BUILD_TIME}</p>
+          <p>Build at {buildTime}</p>
         </article>
       </footer>
     </div>
