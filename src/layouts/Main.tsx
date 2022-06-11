@@ -19,7 +19,7 @@ export const Main = (p: MainProps) => {
     <div>
       <header className="bg-black w-full text-white text-xl flex items-center">
         <p className="max-w-8xl m-auto min-w-6xl">
-          <a href="/" className="uppercase">
+          <a href={process.env.PUBLIC_URL} className="uppercase">
             Musory
           </a>{' '}
           {p.title ? ' ｜ ' + p.title : ''}
