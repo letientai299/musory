@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/musory/static/css/main.db881c81.css",
-    "main.js": "/musory/static/js/main.de25923e.js",
+    "main.js": "/musory/static/js/main.df9c51b9.js",
     "static/js/833.6888c176.chunk.js": "/musory/static/js/833.6888c176.chunk.js",
     "static/js/581.2734e9d7.chunk.js": "/musory/static/js/581.2734e9d7.chunk.js",
     "static/js/977.ebdfcb19.chunk.js": "/musory/static/js/977.ebdfcb19.chunk.js",
@@ -11,7 +11,7 @@
     "service-worker.js": "/musory/service-worker.js",
     "index.html": "/musory/index.html",
     "main.db881c81.css.map": "/musory/static/css/main.db881c81.css.map",
-    "main.de25923e.js.map": "/musory/static/js/main.de25923e.js.map",
+    "main.df9c51b9.js.map": "/musory/static/js/main.df9c51b9.js.map",
     "833.6888c176.chunk.js.map": "/musory/static/js/833.6888c176.chunk.js.map",
     "581.2734e9d7.chunk.js.map": "/musory/static/js/581.2734e9d7.chunk.js.map",
     "977.ebdfcb19.chunk.js.map": "/musory/static/js/977.ebdfcb19.chunk.js.map",
@@ -21,6 +21,6 @@
   },
   "entrypoints": [
     "static/css/main.db881c81.css",
-    "static/js/main.de25923e.js"
+    "static/js/main.df9c51b9.js"
   ]
 }
