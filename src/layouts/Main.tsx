@@ -35,7 +35,7 @@ export const Main = (p: MainProps) => {
             </a>{' '}
             using ReactJS, TailwindCSS, Tone.js
           </p>
-          <p>Build at {process.env.REACT_APP_BUILD_TIME}!</p>
+          <p>Build at {process.env.REACT_APP_BUILD_TIME}</p>
         </article>
       </footer>
     </div>

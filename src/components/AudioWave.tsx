@@ -61,7 +61,7 @@ export const AudioWave = (p: AudioWaveProps) => {
   })
 
   return (
-    <div className="border h-40">
+    <div className="border h-40 w-full">
       <canvas ref={canvas} className="w-full h-full min-h-full"></canvas>
     </div>
   )
