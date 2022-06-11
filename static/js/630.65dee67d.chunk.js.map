@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/630.65dee67d.chunk.js","mappings":"wHAIA,UAJc,WACZ,OAAO","sources":["pages/Sight.tsx"],"sourcesContent":["const Sight = () => {\n  return <p>Practice Sigh Reading</p>\n}\n\nexport default Sight\n"],"names":[],"sourceRoot":""}
