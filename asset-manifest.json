@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/musory/static/css/main.59e0221c.css",
-    "main.js": "/musory/static/js/main.77b157c5.js",
-    "static/js/833.b122c2d2.chunk.js": "/musory/static/js/833.b122c2d2.chunk.js",
+    "main.css": "/musory/static/css/main.db881c81.css",
+    "main.js": "/musory/static/js/main.bdc6d34b.js",
+    "static/js/833.6888c176.chunk.js": "/musory/static/js/833.6888c176.chunk.js",
     "static/js/581.2734e9d7.chunk.js": "/musory/static/js/581.2734e9d7.chunk.js",
-    "static/js/977.ee21b885.chunk.js": "/musory/static/js/977.ee21b885.chunk.js",
+    "static/js/977.ebdfcb19.chunk.js": "/musory/static/js/977.ebdfcb19.chunk.js",
     "static/js/787.bc243d42.chunk.js": "/musory/static/js/787.bc243d42.chunk.js",
-    "static/js/269.a4155930.chunk.js": "/musory/static/js/269.a4155930.chunk.js",
+    "static/js/269.71da9ff4.chunk.js": "/musory/static/js/269.71da9ff4.chunk.js",
     "static/js/572.ded985ef.chunk.js": "/musory/static/js/572.ded985ef.chunk.js",
     "service-worker.js": "/musory/service-worker.js",
     "index.html": "/musory/index.html",
-    "main.59e0221c.css.map": "/musory/static/css/main.59e0221c.css.map",
-    "main.77b157c5.js.map": "/musory/static/js/main.77b157c5.js.map",
-    "833.b122c2d2.chunk.js.map": "/musory/static/js/833.b122c2d2.chunk.js.map",
+    "main.db881c81.css.map": "/musory/static/css/main.db881c81.css.map",
+    "main.bdc6d34b.js.map": "/musory/static/js/main.bdc6d34b.js.map",
+    "833.6888c176.chunk.js.map": "/musory/static/js/833.6888c176.chunk.js.map",
     "581.2734e9d7.chunk.js.map": "/musory/static/js/581.2734e9d7.chunk.js.map",
-    "977.ee21b885.chunk.js.map": "/musory/static/js/977.ee21b885.chunk.js.map",
+    "977.ebdfcb19.chunk.js.map": "/musory/static/js/977.ebdfcb19.chunk.js.map",
     "787.bc243d42.chunk.js.map": "/musory/static/js/787.bc243d42.chunk.js.map",
-    "269.a4155930.chunk.js.map": "/musory/static/js/269.a4155930.chunk.js.map",
+    "269.71da9ff4.chunk.js.map": "/musory/static/js/269.71da9ff4.chunk.js.map",
     "572.ded985ef.chunk.js.map": "/musory/static/js/572.ded985ef.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.59e0221c.css",
-    "static/js/main.77b157c5.js"
+    "static/css/main.db881c81.css",
+    "static/js/main.bdc6d34b.js"
   ]
 }
