@@ -4335,6 +4335,11 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "2.1.1"
 
+fft.js@^4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/fft.js/-/fft.js-4.0.4.tgz#ffed83a397e58039141c804c1dbe1910dced8e6e"
+  integrity sha512-f9c00hphOgeQTlDyavwTtu6RiK8AIFjD6+jvXkNkpeQ7rirK3uFWVpalkoS4LAwbdX7mfZ8aoBfFVQX1Re/8aw==
+
 file-entry-cache@^6.0.1:
   version "6.0.1"
   resolved "https://registry.npmjs.org/file-entry-cache/-/file-entry-cache-6.0.1.tgz"
@@ -6647,6 +6652,13 @@ pirates@^4.0.4:
   version "4.0.5"
   resolved "https://registry.npmjs.org/pirates/-/pirates-4.0.5.tgz"
   integrity sha512-8V9+HQPupnaXMA23c5hvl69zXvTwTzyAYasnkb0Tts4XvO4CliqONMOnvlq26rkhLC3nWDFBJf73LU1e1VZLaQ==
+
+pitchy@4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/pitchy/-/pitchy-4.0.4.tgz#dfbe6c29ff2440280df54aa637a3c4f3997ccad7"
+  integrity sha512-p7lCB3DGUV92rUf3ebzsA7vhVgMQstXesoFTMeyd6IR/gg4++oSeA9HXmpXUlAcTP6Hyo0nkmHtVKB2DQJDfug==
+  dependencies:
+    fft.js "^4.0.4"
 
 pkg-dir@^4.1.0, pkg-dir@^4.2.0:
   version "4.2.0"

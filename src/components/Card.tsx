@@ -1,12 +1,12 @@
 import { ReactElement } from 'react'
 
-type AppProps = {
+type CardProps = {
   name: string
   description: string
   icon: ReactElement
 }
 
-export const Card = (p: AppProps) => (
+export const Card = (p: CardProps) => (
   <div
     className="p-6 m-4 max-w-xl mx-auto bg-white rounded-xl
     shadow-lg flex items-center space-x-4
