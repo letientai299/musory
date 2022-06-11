@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { DebounceInput } from 'react-debounce-input'
 import { GiPauseButton, GiPlayButton } from 'react-icons/gi'
-import { Loop, Synth, Transport } from 'tone'
+import { Loop, start as toneStart, Synth, Transport } from 'tone'
 
 class timeSignature {
   str: string
@@ -31,8 +31,8 @@ const TimeSignature = (p: {
   onClick: (str: string) => void
 }) => {
   let cls =
-    'flex border m-6 p-6 flex-col items-center text-center text-3xl font-bold ' +
-    'border-4 hover:border-cyan-500'
+    'flex border m-2 p-2 flex-col items-center text-center text-xl font-bold ' +
+    'border-2 hover:border-cyan-500'
   if (p.active) {
     cls += ' border-cyan-700'
   }
@@ -101,8 +101,12 @@ const Metronome = () => {
   useHotkeys('down', () => setBmp((pre) => safeBmp(pre, pre - 1)))
   useHotkeys('j', () => setBmp((pre) => safeBmp(pre, pre - 1)))
 
-  useHotkeys('Enter', () => setPlaying((pre) => !pre))
-  useHotkeys('Space', () => setPlaying((pre) => !pre))
+  useHotkeys('Enter', () => {
+    toneStart().then(() => setPlaying((pre) => !pre))
+  })
+  useHotkeys('Space', () => {
+    toneStart().then(() => setPlaying((pre) => !pre))
+  })
 
   useEffect(() => {
     togglePlaying(playing, bmp, signature)
@@ -119,15 +123,19 @@ const Metronome = () => {
         onChange={(e) =>
           setBmp((pre) => safeBmp(pre, Number.parseInt(e.target.value)))
         }
-        className="text-9xl m-auto w-1/2 text-center outline-none appearance-none"
+        className="text-6xl m-auto w-1/2 text-center outline-none appearance-none"
       />
-      <p className="text-3xl">BMP</p>
+      <p className="text-sl">BMP</p>
 
       <button
         autoFocus
         id="btn-play"
-        className="text-9xl"
-        onMouseDown={() => setPlaying(!playing)}
+        className="text-6xl cursor-pointer"
+        onClick={(e) => {
+          if (e.clientX && e.clientY) {
+            toneStart().then(() => setPlaying(!playing))
+          }
+        }}
       >
         {playing ? <GiPauseButton /> : <GiPlayButton />}
       </button>
@@ -148,6 +156,7 @@ const Metronome = () => {
 
       <article className="prose">
         <ul>
+          <li>Click the BPM number to edit it directly</li>
           <li>
             <kbd>Up</kbd> or <kbd>j</kbd> to increase the BMP.
           </li>

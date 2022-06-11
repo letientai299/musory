@@ -30,11 +30,7 @@ const Sight = () => {
 
     navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
       const audioContext = new window.AudioContext()
-      const analyzer = new AnalyserNode(audioContext, {
-        // maxDecibels: -0,
-        // minDecibels: -60,
-        // fftSize: 4096,
-      })
+      const analyzer = new AnalyserNode(audioContext)
       audioContext.createMediaStreamSource(stream).connect(analyzer)
       setAudio({
         stream: stream,
