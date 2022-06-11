@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { DebounceInput } from 'react-debounce-input'
 import { GiPauseButton, GiPlayButton } from 'react-icons/gi'
@@ -47,7 +47,7 @@ const TimeSignature = (p: {
 
 const defaultBMP = 100
 const minBMP = 10
-const maxBMP = 200
+const maxBMP = 400
 const safeBmp = (pre: number, n: number) => {
   if (Number.isNaN(n)) {
     return pre
@@ -104,13 +104,16 @@ const Metronome = () => {
   useHotkeys('Enter', () => setPlaying((pre) => !pre))
   useHotkeys('Space', () => setPlaying((pre) => !pre))
 
-  togglePlaying(playing, bmp, signature)
+  useEffect(() => {
+    togglePlaying(playing, bmp, signature)
+    return () => togglePlaying(false, bmp, signature)
+  })
 
   return (
     <div className="m-auto flex flex-col center items-center">
       <DebounceInput
-        autoFocus
         type="number"
+        pattern="\d*"
         debounceTimeout={200}
         value={bmp}
         onChange={(e) =>
@@ -121,6 +124,7 @@ const Metronome = () => {
       <p className="text-3xl">BMP</p>
 
       <button
+        autoFocus
         id="btn-play"
         className="text-9xl"
         onMouseDown={() => setPlaying(!playing)}
