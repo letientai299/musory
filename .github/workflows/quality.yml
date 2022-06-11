@@ -1,0 +1,28 @@
+name: Code Quality
+
+on: [push, pull_request]
+jobs:
+  lint-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '17'
+          cache: 'yarn'
+
+      - uses: actions/cache@v3
+        id: cache-yarn-quality
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-yarn-quality-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-quality-${{ hashFiles('**/yarn.lock') }}
+
+            # - if: ${{ steps.cache-yarn-quality.outputs.cache-hit == 'false' }}
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - run: yarn lint
+      - run: yarn test
