@@ -1,0 +1,58 @@
+name: Pages
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '17'
+          cache: 'yarn'
+
+      - uses: actions/cache@v3
+        id: cache-yarn-deploy
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-yarn-deploy-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-deploy-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Build and push to gh-pages branch
+        run: |
+
+          git config --global user.name 'CI bot'
+          git config --global user.email 'letientai299@bot.noreply.github.com'
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+
+          git fetch --all && git checkout gh-pages --force
+          find . -type d | grep -v '.git' | grep -vE '^\.$' | xargs rm -rf
+
+          git checkout origin/master .
+
+          cache_hit=$(echo "${{ steps.cache-yarn-deploy.outputs.cache-hit }}")
+          if [[ $cache_hit = 'false' ]]; then
+            echo "Cache miss"
+            yarn --frozen-lockfile
+          else
+            echo "Cache hit"
+            yarn --frozen-lockfile --offline
+          fi
+
+          yarn build
+          echo "Remove every thing non-web"
+          ls -a | grep -vE '(node_modules|build|\.git|\.+$)' | xargs rm -rf
+          mv build/** .
+          ls -lah
+          rm -rf build
+
+          git add . # node_modules is ignored
+          git commit -n -m "Build from ${GITHUB_SHA}" --allow-empty
+          git push --no-verify --force
+
