@@ -1,5 +1,7 @@
 import { RefObject, useEffect, useRef } from 'react'
 import Notes from '../util/notes'
+import { Note } from '@tonaljs/tonal'
+import { throttle } from 'lodash'
 
 type PitchDetectorProps = {
   analyzer: AnalyserNode | undefined
@@ -47,7 +49,7 @@ function autoCorrelate(buffer: Float32Array, sampleRate: number): number {
   buffer = buffer.slice(r1, r2)
   SIZE = buffer.length
 
-  // Create a new array of the sums of offsets to do the autocorrelation
+  // Create a new array of the sums of offsets to do the auto-correlation
   const c = new Array(SIZE).fill(0)
   // For each potential offset, calculate the sum of each buffer value times its offset value
   for (let i = 0; i < SIZE; i++) {
@@ -98,29 +100,56 @@ function detect(
   freq: RefObject<HTMLParagraphElement>,
   onNoteDetected?: (name: string) => void
 ) {
-  let lastNote = ''
+  let lastname = ''
+  let lastPitch = -100
+  let smoothingCount = 0
+  let smoothingThreshold = 5
+  let lastNotifiedAt = 0
+  const ignoreRange = 3
+  const smoothingCountThreshold = 8
+  const data = new Float32Array(analyzer.fftSize)
+
   const visualize = () => {
-    requestAnimationFrame(visualize)
     if (!note || !freq || !note.current || !freq.current) {
       return
     }
+    requestAnimationFrame(visualize)
 
-    const data = new Float32Array(analyzer.fftSize)
     analyzer.getFloatTimeDomainData(data)
     const pitch = autoCorrelate(data, analyzer.context.sampleRate)
     if (Number.isNaN(pitch) || pitch < 0) {
       return
     }
 
-    freq.current.innerText = `${pitch.toFixed(2)} Hz`
-    const name = Notes.fromFrequency(pitch)
-    if (name == lastNote) {
+    const isSimilar = Math.abs(pitch - lastPitch) < smoothingThreshold
+    if (isSimilar) {
+      if (smoothingCount < smoothingCountThreshold) {
+        smoothingCount++
+        return
+      } else {
+        lastPitch = pitch
+        smoothingCount = 0
+        lastname = Notes.fromFrequency(pitch)
+        note.current.innerText = lastname
+        freq.current.innerText = `${pitch.toFixed(2)} Hz`
+        const now = new Date().getTime()
+        if (now - lastNotifiedAt >= 500) {
+          onNoteDetected?.(lastname)
+          lastNotifiedAt = now
+        }
+      }
+    } else {
+      lastPitch = pitch
+      lastname = Notes.fromFrequency(pitch)
+      const note = Note.get(lastname)
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const down = Note.fromMidi(note.midi! - ignoreRange)
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      smoothingThreshold = note.freq! - Note.midi(down)!
+      smoothingCount = 0
+      lastNotifiedAt = 0
       return
     }
-
-    note.current.innerText = name
-    lastNote = name
-    onNoteDetected?.(name)
   }
 
   visualize()
@@ -132,7 +161,10 @@ export const PitchDetector = (p: PitchDetectorProps) => {
 
   useEffect(() => {
     if (p.analyzer) {
-      detect(p.analyzer, note, freq, p.onNoteDetected)
+      const cb = throttle((name: string) => {
+        p.onNoteDetected?.(name)
+      }, 150)
+      detect(p.analyzer, note, freq, cb)
     }
   })
 

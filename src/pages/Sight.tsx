@@ -5,6 +5,7 @@ import { AudioWave } from '../components/AudioWave'
 import { PitchDetector } from '../components/PitchDetector'
 import SingleNote from '../components/SingleNote'
 import { Note } from '@tonaljs/tonal'
+import { DebounceInput } from 'react-debounce-input'
 
 const genNote = (low: string, high: string): string => {
   const lowMidi = Note.midi(low)
@@ -13,7 +14,8 @@ const genNote = (low: string, high: string): string => {
     return 'A4'
   }
   const midi = lowMidi + Math.floor(Math.random() * (highMidi - lowMidi))
-  return Note.fromMidi(midi)
+  const note = Note.fromMidi(midi)
+  return note.replaceAll('b', '').replaceAll('#', '')
 }
 
 const Sight = () => {
@@ -47,7 +49,8 @@ const Sight = () => {
     navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
       const audioContext = new window.AudioContext()
       const analyzer = new AnalyserNode(audioContext, {
-        minDecibels: -40,
+        minDecibels: -70,
+        maxDecibels: -20,
       })
       audioContext.createMediaStreamSource(stream).connect(analyzer)
       setAudio({
@@ -77,8 +80,9 @@ const Sight = () => {
           }
         >
           <p className={''}>Lowest note</p>
-          <input
+          <DebounceInput
             value={lowNote}
+            debounceTimeout={500}
             onChange={(e) => setLowNote(e.target.value)}
             className={'border border-cyan-500 w-12 text-center'}
           />
@@ -91,8 +95,9 @@ const Sight = () => {
           }
         >
           <p>Highest note</p>
-          <input
+          <DebounceInput
             value={highNote}
+            debounceTimeout={500}
             onChange={(e) => setHighNote(e.target.value)}
             className={'border border-cyan-500 w-12 text-center'}
           />

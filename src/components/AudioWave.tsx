@@ -16,17 +16,17 @@ function draw(
 
   ctx.lineWidth = 1
   ctx.strokeStyle = 'rgb(0, 0, 0)'
+  const bufferLength = analyzer.fftSize
+  const data = new Uint8Array(bufferLength)
+  const sliceWidth = width / bufferLength
 
   const visualize = () => {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
     requestAnimationFrame(visualize)
 
-    const bufferLength = analyzer.fftSize
-    const data = new Uint8Array(bufferLength)
     analyzer.getByteTimeDomainData(data)
 
     ctx.beginPath()
-    const sliceWidth = width / bufferLength
     let x = 0
     for (let i = 0; i < bufferLength; i += step) {
       const v = data[i] / 128.0
