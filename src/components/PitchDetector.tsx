@@ -3,6 +3,7 @@ import Notes from '../util/notes'
 
 type PitchDetectorProps = {
   analyzer: AnalyserNode | undefined
+  onNoteDetected?: (name: string) => void
 }
 
 // Must be called on analyser.getFloatTimeDomainData and audioContext.sampleRate
@@ -94,8 +95,10 @@ function autoCorrelate(buffer: Float32Array, sampleRate: number): number {
 function detect(
   analyzer: AnalyserNode,
   note: RefObject<HTMLParagraphElement>,
-  freq: RefObject<HTMLParagraphElement>
+  freq: RefObject<HTMLParagraphElement>,
+  onNoteDetected?: (name: string) => void
 ) {
+  let lastNote = ''
   const visualize = () => {
     requestAnimationFrame(visualize)
     if (!note || !freq || !note.current || !freq.current) {
@@ -109,8 +112,15 @@ function detect(
       return
     }
 
-    note.current.innerText = Notes.fromFrequency(pitch)
     freq.current.innerText = `${pitch.toFixed(2)} Hz`
+    const name = Notes.fromFrequency(pitch)
+    if (name == lastNote) {
+      return
+    }
+
+    note.current.innerText = name
+    lastNote = name
+    onNoteDetected?.(name)
   }
 
   visualize()
@@ -122,7 +132,7 @@ export const PitchDetector = (p: PitchDetectorProps) => {
 
   useEffect(() => {
     if (p.analyzer) {
-      detect(p.analyzer, note, freq)
+      detect(p.analyzer, note, freq, p.onNoteDetected)
     }
   })
 

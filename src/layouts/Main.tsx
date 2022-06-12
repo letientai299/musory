@@ -12,7 +12,6 @@ export const Main = (p: MainProps) => {
   })
   const buildTime: string = useMemo<string>((): string => {
     const s = process.env.REACT_APP_BUILD_TIME
-    console.log(s)
     return new Date(s ? s : '').toLocaleString()
   }, [])
   return (

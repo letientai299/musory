@@ -1,3 +1,5 @@
+import { Note } from '@tonaljs/tonal'
+
 const tonesNum = 12 // also same as notes.length
 const notes = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#']
 const a4Freq = 440
@@ -15,6 +17,13 @@ const Notes = {
       octave--
     }
     return `${name}${octave}`
+  },
+
+  ClefBass: 'bass',
+  ClefTreble: 'treble',
+  preferredClef: (name: string): string => {
+    const oct = Note.octave(name)
+    return !oct || oct >= 4 ? Notes.ClefTreble : Notes.ClefBass
   },
 }
 
