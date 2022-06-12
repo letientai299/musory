@@ -38,17 +38,17 @@ const SingleNote = (p: SingleNoteProps) => {
       ? Notes.preferredClef(p.name)
       : Notes.ClefTreble
   }
+  const scaleFactor = p.scale ? p.scale : defaultScaleFactor
 
   const renderStave = (div: HTMLDivElement, clef: string): Stave => {
     const divStyle = window.getComputedStyle(div)
     const w = Number.parseInt(divStyle.width)
-    const h = Number.parseInt(divStyle.height)
+    const h = 150 * scaleFactor
 
     const renderer = new Renderer(div, Renderer.Backends.SVG)
     renderer.resize(w, h)
     const ctx = renderer.getContext()
 
-    const scaleFactor = p.scale ? p.scale : defaultScaleFactor
     ctx.scale(scaleFactor, scaleFactor)
 
     const stave = new Stave(paddingX, 0, w / scaleFactor - 2 * paddingX)
@@ -103,8 +103,7 @@ const SingleNote = (p: SingleNoteProps) => {
     return reset
   }, [sheet, p.name])
 
-  const height = `h-${p.scale ? p.scale * 32 : 32}`
-  return <div ref={sheet} className={`w-full ${height}`} />
+  return <div ref={sheet} className={'w-full'} />
 }
 
 export default SingleNote
