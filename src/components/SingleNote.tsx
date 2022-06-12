@@ -20,9 +20,10 @@ type SingleNoteProps = {
    * The result should contain the least ledger lines.
    */
   clef?: string
+  readonly scale?: number
 }
 
-const scaleFactor = 3
+const defaultScaleFactor = 1
 const paddingX = 10
 
 /**
@@ -39,7 +40,6 @@ const SingleNote = (p: SingleNoteProps) => {
   }
 
   const renderStave = (div: HTMLDivElement, clef: string): Stave => {
-    div.id = `single-note-${new Date().getTime()}`
     const divStyle = window.getComputedStyle(div)
     const w = Number.parseInt(divStyle.width)
     const h = Number.parseInt(divStyle.height)
@@ -48,6 +48,7 @@ const SingleNote = (p: SingleNoteProps) => {
     renderer.resize(w, h)
     const ctx = renderer.getContext()
 
+    const scaleFactor = p.scale ? p.scale : defaultScaleFactor
     ctx.scale(scaleFactor, scaleFactor)
 
     const stave = new Stave(paddingX, 0, w / scaleFactor - 2 * paddingX)
@@ -66,10 +67,7 @@ const SingleNote = (p: SingleNoteProps) => {
     const reset = () => {
       div.childNodes.forEach((n) => div.removeChild(n))
     }
-
-    if (!div.id) {
-      reset()
-    }
+    reset()
 
     const stave = renderStave(div, clef)
 
@@ -86,19 +84,27 @@ const SingleNote = (p: SingleNoteProps) => {
       duration: 'q',
       clef: clef,
       auto_stem: true,
+      align_center: true,
     })
 
+    // hard-coded the padding value to make the note center,
+    // until we know how to calculate exact note and accidental size.
+    let notePadding = 70
     if (note.acc) {
       staveNote.addModifier(new Accidental(note.acc))
+      notePadding = 50
     }
+
     voice.addTickable(staveNote)
 
-    new Formatter().joinVoices([voice]).format([voice])
+    const measureWidth = stave.getWidth() - notePadding
+    new Formatter().joinVoices([voice]).format([voice], measureWidth)
     voice.draw(stave.getContext(), stave)
     return reset
   }, [sheet, p.name])
 
-  return <div ref={sheet} className="w-full h-96" />
+  const height = `h-${p.scale ? p.scale * 32 : 32}`
+  return <div ref={sheet} className={`w-full ${height}`} />
 }
 
 export default SingleNote
