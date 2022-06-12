@@ -1,26 +1,28 @@
 {
   "files": {
-    "main.css": "/musory/static/css/main.db881c81.css",
-    "main.js": "/musory/static/js/main.df9c51b9.js",
-    "static/js/833.6888c176.chunk.js": "/musory/static/js/833.6888c176.chunk.js",
-    "static/js/581.2734e9d7.chunk.js": "/musory/static/js/581.2734e9d7.chunk.js",
-    "static/js/977.ebdfcb19.chunk.js": "/musory/static/js/977.ebdfcb19.chunk.js",
+    "main.css": "/musory/static/css/main.6290e2af.css",
+    "main.js": "/musory/static/js/main.2f2dbecb.js",
+    "static/js/617.a29b4542.chunk.js": "/musory/static/js/617.a29b4542.chunk.js",
+    "static/js/581.15eae7f1.chunk.js": "/musory/static/js/581.15eae7f1.chunk.js",
+    "static/js/977.8291e874.chunk.js": "/musory/static/js/977.8291e874.chunk.js",
     "static/js/787.bc243d42.chunk.js": "/musory/static/js/787.bc243d42.chunk.js",
-    "static/js/269.71da9ff4.chunk.js": "/musory/static/js/269.71da9ff4.chunk.js",
-    "static/js/572.ded985ef.chunk.js": "/musory/static/js/572.ded985ef.chunk.js",
+    "static/js/467.aaa76ec0.chunk.js": "/musory/static/js/467.aaa76ec0.chunk.js",
+    "static/js/627.b9c35da3.chunk.js": "/musory/static/js/627.b9c35da3.chunk.js",
+    "static/js/229.fc2ab746.chunk.js": "/musory/static/js/229.fc2ab746.chunk.js",
     "service-worker.js": "/musory/service-worker.js",
     "index.html": "/musory/index.html",
-    "main.db881c81.css.map": "/musory/static/css/main.db881c81.css.map",
-    "main.df9c51b9.js.map": "/musory/static/js/main.df9c51b9.js.map",
-    "833.6888c176.chunk.js.map": "/musory/static/js/833.6888c176.chunk.js.map",
-    "581.2734e9d7.chunk.js.map": "/musory/static/js/581.2734e9d7.chunk.js.map",
-    "977.ebdfcb19.chunk.js.map": "/musory/static/js/977.ebdfcb19.chunk.js.map",
+    "main.6290e2af.css.map": "/musory/static/css/main.6290e2af.css.map",
+    "main.2f2dbecb.js.map": "/musory/static/js/main.2f2dbecb.js.map",
+    "617.a29b4542.chunk.js.map": "/musory/static/js/617.a29b4542.chunk.js.map",
+    "581.15eae7f1.chunk.js.map": "/musory/static/js/581.15eae7f1.chunk.js.map",
+    "977.8291e874.chunk.js.map": "/musory/static/js/977.8291e874.chunk.js.map",
     "787.bc243d42.chunk.js.map": "/musory/static/js/787.bc243d42.chunk.js.map",
-    "269.71da9ff4.chunk.js.map": "/musory/static/js/269.71da9ff4.chunk.js.map",
-    "572.ded985ef.chunk.js.map": "/musory/static/js/572.ded985ef.chunk.js.map"
+    "467.aaa76ec0.chunk.js.map": "/musory/static/js/467.aaa76ec0.chunk.js.map",
+    "627.b9c35da3.chunk.js.map": "/musory/static/js/627.b9c35da3.chunk.js.map",
+    "229.fc2ab746.chunk.js.map": "/musory/static/js/229.fc2ab746.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.db881c81.css",
-    "static/js/main.df9c51b9.js"
+    "static/css/main.6290e2af.css",
+    "static/js/main.2f2dbecb.js"
   ]
 }

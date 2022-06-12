@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkmusory=self.webpackChunkmusory||[]).push([[581],{581:function(e,c,r){r.r(c);var u=r(184);c.default=function(){return(0,u.jsx)("div",{children:"Practice perfect pitch"})}}}]);
-//# sourceMappingURL=581.2734e9d7.chunk.js.map
