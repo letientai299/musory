@@ -14,8 +14,8 @@ export const Card = (p: CardProps) => (
   >
     <div className="text-6xl">{p.icon}</div>
     <div>
-      <p className="prose text-xl font-bold text-black">{p.name}</p>
-      <p className="prose">{p.description}</p>
+      <p className="text-xl font-bold">{p.name}</p>
+      <p className="">{p.description}</p>
     </div>
   </div>
 )
